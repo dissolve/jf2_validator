@@ -1,0 +1,17 @@
+{
+  "type": "entry",
+  "video": [
+    {
+      "content-type": "video/mp4",
+      "url": "sample_h264.mov"
+    },
+    {
+      "content-type": "video/ogg",
+      "url": "sample_ogg.ogg"
+    },
+    {
+      "content-type": "video/webm",
+      "url": "sample_webm.webm"
+    }
+  ]
+}

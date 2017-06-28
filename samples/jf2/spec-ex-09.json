@@ -1,0 +1,27 @@
+{
+  "type": "feed",
+  "url": "http://alice.example.com/collectionurl",
+  "name": "Alice's Home Page",
+  "author": {
+    "type": "card",
+    "name": "Alice",
+    "url": "http://alice.example.com",
+    "photo": "http://alice.example.com/photo"
+  },
+  "children": [
+    {
+      "type": "entry",
+      "content": {
+        "html": "<p>Hello World</p>",
+        "text": "Hello World"
+      }
+    },
+    {
+      "type": "entry",
+      "content": {
+        "html": "<p>A Second Post</p>",
+        "text": "A Second Post"
+      }
+    }
+  ]
+}

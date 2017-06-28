@@ -1,0 +1,29 @@
+{
+  "type": "entry",
+  "published": "2015-10-20T15:49:00-0700",
+  "url": "http://example.com/like/r23eugi02c",
+  "author": {
+    "type": "card",
+    "name": "Alice",
+    "url": "http://alice.example.com",
+    "photo": "http://alice.example.com/photo.jpg"
+  },
+  "like-of": "http://bob.example.com/post/100",
+  "category": ["Likes", "Posts"],
+  "references": {
+    "http://bob.example.com/post/100": {
+      "type": "entry",
+      "published": "2015-10-18T12:33:00-0700",
+      "url": "http://bob.example.com/post/100",
+      "author": "http://bob.example.com",
+      "name": "My First Post",
+      "content": "This is my first post on my new blog, I hope you like it"
+    },
+    "http://bob.example.com": {
+      "type": "card",
+      "name": "Bob",
+      "url": "http://bob.example.com",
+      "photo": "http://bob.example.com/mypicture.jpg"
+    }
+  }
+}

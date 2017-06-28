@@ -1,0 +1,22 @@
+{
+  "type": "feed",
+  "url": "https://example.org/myfeed.html",
+  "name": "Brent Simmons’s Microblog",
+  "author": {
+    "type": "card",
+    "name": "Brent Simmons",
+	"url": "http://example.org/",
+	"photo": "https://example.org/avatar.png"
+  },
+  "children": [
+	{
+	  "type": "entry",
+	  "uid": "https://example.org/2347259",
+	  "url": "https://example.org/2347259",
+	  "content": {
+		"text": "Cats are neat. \n\nhttps://example.org/cats"
+	  },
+	  "published": "2016-02-09T14:22:00-07:00"
+	}
+  ]
+}

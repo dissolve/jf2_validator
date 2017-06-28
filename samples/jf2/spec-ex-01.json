@@ -1,0 +1,14 @@
+{
+  "type": "entry",
+  "published": "2015-10-20T15:49:00-0700",
+  "url": "http://example.com/post/fsjeuu8372",
+  "author": {
+    "type": "card",
+    "name": "Alice",
+    "url": "http://alice.example.com",
+    "photo": "http://alice.example.com/photo.jpg"
+  },
+  "name": "Hello World",
+  "content": "This is a blog post",
+  "category": "Posts"
+}

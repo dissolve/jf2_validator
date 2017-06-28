@@ -1,0 +1,13 @@
+{
+  "type": "entry",
+  "published": "2015-10-20T15:49:00-0700",
+  "url": "http://example.com/like/r23eugi02c",
+  "author": {
+    "type": "card",
+    "name": "Alice",
+    "url": "http://alice.example.com",
+    "photo": "http://alice.example.com/photo.jpg"
+  },
+  "like-of": "http://bob.example.com/post/100",
+  "category": ["Likes", "Posts"]
+}
