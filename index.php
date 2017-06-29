@@ -8,6 +8,7 @@
 
     <div class="single-column">
         <h1>JF2 Validator</h1>
+        <h2>WARNING: This validator is in active development, results may not be accurate.</h2>
 
     <section class="content">
         <form method="POST">
