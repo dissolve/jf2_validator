@@ -11,13 +11,13 @@
         <h2>WARNING: This validator is in active development, results may not be accurate.</h2>
 
 <?php 
-$input_data = filter_input(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
+$input_data = filter_input(INPUT_POST, 'data' ); // removing actual filter from this for now
 $fix_quotes = isset($_POST['fix_quotes']);
 ?>
     <section class="content">
         <form method="POST">
 
-          <textarea name="data" placeholder="jf2 data here"><?php echo $input_data ?></textarea>
+          <textarea name="data" placeholder="jf2 data here"><?php echo htmlspecialchars($input_data) ?></textarea>
           <br>
           <label for="fix_quotes">Auto Convert all single quotes to double quotes: </label><input id="fix_quotes" type="checkbox" name="fix_quotes" value="true"  <?php echo ($fix_quotes ? 'checked="checked"' : '') ?>/><br>
           <input class="button" type="submit" name="submit" value="Validate"/>
