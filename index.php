@@ -9,6 +9,7 @@ textarea{width:100%; min-height:200px;}
 .results{width:700px;margin-left:auto; margin-right:auto;}
 .warning{background-color:#ccf;}
 .error{background-color:#fcc;}
+.success{background-color:#cfc;}
 </style>
   </head>
   <body>
@@ -46,6 +47,11 @@ textarea{width:100%; min-height:200px;}
             echo '</div>';
         }
     }
+
+    if(isset($success) && $success){
+        echo '<div class="result success">This validator is not yet complete, but theres no errors in it thus far.</div>';
+    }
+
     ?>
     </div>
 
