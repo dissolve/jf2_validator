@@ -7,6 +7,7 @@ form{width:700px; margin-left:auto; margin-right:auto; position:relative; text-a
 .button{width:100%;}
 textarea{width:100%; min-height:200px;}
 .results{width:700px;margin-left:auto; margin-right:auto;}
+.result{margin-top:10px; border:1px solid black;}
 .warning{background-color:#ccf;}
 .error{background-color:#fcc;}
 .success{background-color:#cfc;}
