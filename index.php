@@ -52,7 +52,13 @@
     }
 
     ?>
+
+    <div class="small">
+        This validator is open source and available on <a href="https://github.com/dissolve/jf2_validator">GitHub</a>
+    <div>
+
     </div>
+
 
 
 </body>
