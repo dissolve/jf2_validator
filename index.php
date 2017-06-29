@@ -10,30 +10,28 @@
         <h1>JF2 Validator</h1>
         <h2>WARNING: This validator is in active development, results may not be accurate.</h2>
 
+<?php 
+$input_data = filter_input(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
+$fix_quotes = isset($_POST['fix_quotes']);
+?>
     <section class="content">
         <form method="POST">
 
-          <textarea name="data" placeholder="jf2 data here"><?php echo $_POST['data']?></textarea>
+          <textarea name="data" placeholder="jf2 data here"><?php echo $input_data ?></textarea>
           <br>
-          <label for="fix_quotes">Auto Convert all single quotes to double quotes: </label><input id="fix_quotes" type="checkbox" name="fix_quotes" value="true"  <?php echo (isset($_POST['fix_quotes']) ? 'checked="checked"' : '') ?>/><br>
+          <label for="fix_quotes">Auto Convert all single quotes to double quotes: </label><input id="fix_quotes" type="checkbox" name="fix_quotes" value="true"  <?php echo ($fix_quotes ? 'checked="checked"' : '') ?>/><br>
           <input class="button" type="submit" name="submit" value="Validate"/>
 
         </form>
     </section>
 
     <?php
-    if(isset($_POST['data'])){
+    if($input_data){
 
         require_once __DIR__ . '/validator.php';
 
-        $input = $_POST['data'];
-
-        $fix_quotes = isset($_POST['fix_quotes']);
-
-        //$results = do_validate($input, $fix_quotes);
-
         $validator = new JF2Validator();
-        $results = $validator->validate($input, $fix_quotes);
+        $results = $validator->validate($input_data, $fix_quotes);
 
         $success = true;
         foreach($results as $result){
