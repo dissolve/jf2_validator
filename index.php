@@ -7,6 +7,8 @@ form{width:700px; margin-left:auto; margin-right:auto; position:relative; text-a
 .button{width:100%;}
 textarea{width:100%; min-height:200px;}
 .results{width:700px;margin-left:auto; margin-right:auto;}
+.warning{background-color:#ccf;}
+.error{background-color:#fcc;}
 </style>
   </head>
   <body>
