@@ -45,7 +45,7 @@ function do_validate($input, $fix_quotes = false)
         $results[] = new ResultMessage(P_ERROR, 'JSON decode error "' . $json_errors[$last_err]. '". Parsing stopped.');
         return $results;
 	}
-    if(!isset($parsed['type']) && count($parsed) != 1 && !isset($parsed['children'])){
+    if(!isset($parsed['type']) && (!isset($parsed['children']) || count($parsed) != 1)){
         $results[] = new ResultMessage(P_WARN, '"type" field missing. This is not recommended unless it includes only the attribute "children", and nothing else');
     }
 

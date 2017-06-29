@@ -11,6 +11,8 @@ textarea{width:100%; min-height:200px;}
 
 <form method="POST">
 
+<h1>JF2 Validator</h1>
+
 <textarea name="data" placeholder="jf2 data here"><?php echo $_POST['data']?></textarea>
 <br>
 <label for="fix_quotes">Auto Convert all single quotes to double quotes: </label><input id="fix_quotes" type="checkbox" name="fix_quotes" value="true"  <?php echo (isset($_POST['fix_quotes']) ? 'checked="checked"' : '') ?>/><br>
