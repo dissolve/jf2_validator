@@ -16,6 +16,11 @@ class ResultMessage
     
 }
 
+function is_hash(array $in)
+{
+    return is_array($in) && count(array_filter(array_keys($in), 'is_string')) > 0;
+}
+
 function do_validate($input, $fix_quotes = false)
 {
     $results = array();
@@ -43,12 +48,46 @@ function do_validate($input, $fix_quotes = false)
     if(!isset($parsed['type']) && count($parsed) != 1 && !isset($parsed['children'])){
         $results[] = new ResultMessage(P_WARN, '"type" field missing. This is not recommended unless it includes only the attribute "children", and nothing else');
     }
-    if(is_array($parsed['type'])){
-        $results[] = new ResultMessage(P_WARN, 'type field must be a single string', '"type" : ' . print_r($parsed['type'], true));
+
+    if(isset($parsed['type']) && (is_array($parsed['type']) || !is_string($parsed['type'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'type field must be a single string', '"type" : ' . print_r($parsed['type'], true));
     }
-    if(!is_string($parsed['type'])){
-        $results[] = new ResultMessage(P_WARN, 'type field must be a string', '"type" : ' . print_r($parsed['type'], true));
+
+    if(isset($parsed['children']) && (!is_array($parsed['children']) || is_hash($parsed['children']))){
+        $results[] = new ResultMessage(P_ERROR, 'children must be serialized as an array []', '"children" : ' . print_r($parsed['children'], true));
+    } 
+
+    //TODO: top level ONLY
+    if(isset($parsed['references']) && (is_array($parsed['references']) || !is_string($parsed['references'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'references must be serialized as a hash', '"references" : ' . print_r($parsed['references'], true));
+    } 
+    //TODO check possible values
+    if(isset($parsed['lang']) && (is_array($parsed['lang']) || !is_string($parsed['lang'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'lang field must be a single string', '"lang" : ' . print_r($parsed['lang'], true));
     }
+    //TODO: top level ONLY
+    if(isset($parsed['@context']) && (is_array($parsed['@context']) || !is_string($parsed['@context'] ))){
+        $results[] = new ResultMessage(P_ERROR, '@context field must be a single string', '"@context" : ' . print_r($parsed['@context'], true));
+    }
+    if(isset($parsed['@context']) && trim($parsed['@context']) != 'http://www.w3.org/ns/jf2') {
+        $results[] = new ResultMessage(P_ERROR, '@context field if present, must be "http://www.w3.org/ns/jf2"', '"@context" : ' . print_r($parsed['@context'], true));
+    }
+
+    if(isset($parsed['value']) && (is_array($parsed['value']) || !is_string($parsed['value'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'value field must be a single string', '"value" : ' . print_r($parsed['value'], true));
+    }
+
+    //TODO these doesn't make sense on top level items
+    if(isset($parsed['content-type']) && (is_array($parsed['content-type']) || !is_string($parsed['content-type'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'content-type field must be a single string', '"content-type" : ' . print_r($parsed['content-type'], true));
+    }
+    if(isset($parsed['text']) && (is_array($parsed['text']) || !is_string($parsed['text'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'text field must be a single string', '"text" : ' . print_r($parsed['text'], true));
+    }
+    if(isset($parsed['html']) && (is_array($parsed['html']) || !is_string($parsed['html'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'html field must be a single string', '"html" : ' . print_r($parsed['html'], true));
+    }
+
 
     //var_dump($parsed);
 

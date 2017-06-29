@@ -37,7 +37,7 @@ if(isset($_POST['data'])){
             $success = false;
             $type = 'error';
         }
-        echo '<div class="result '.$type.'>'
+        echo '<div class="result '.$type.'>';
         echo $result->message ;
         echo '</div>';
     }
