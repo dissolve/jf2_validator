@@ -89,10 +89,58 @@ function do_validate($input, $fix_quotes = false)
     }
 
 
-    //var_dump($parsed);
-
+    $results = array_merge($results, descend_and_recurse($parsed));
 
 	return $results;
 
+}
+
+function descend_and_recurse($parsed)
+{
+    $results = array();
+    if(is_hash($parsed)){
+        foreach($parsed as $key => $val){
+            $results = array_merge($results, recursive_validate($val));
+        }
+
+    } elseif(is_array($parsed)){
+        foreach($parsed as $val){
+            $results = array_merge($results, descend_and_recurse($val));
+        }
+    }
+    return $results;
+    //var_dump($parsed);
+}
+
+function recursive_validate($parsed)
+{
+    $results = array();
+
+    if(isset($parsed['references']) ){
+        $results[] = new ResultMessage(P_ERROR, 'references is only allowed at the top level', '"references" : ' . print_r($parsed['references'], true));
+    } 
+    if(isset($parsed['@context']) ){
+        $results[] = new ResultMessage(P_ERROR, '@context is only allowed at the top level', '"@context" : ' . print_r($parsed['@context'], true));
+    }
+
+    //TODO check possible values
+    if(isset($parsed['lang']) && (is_array($parsed['lang']) || !is_string($parsed['lang'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'lang field must be a single string', '"lang" : ' . print_r($parsed['lang'], true));
+    }
+
+    if(isset($parsed['value']) && (is_array($parsed['value']) || !is_string($parsed['value'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'value field must be a single string', '"value" : ' . print_r($parsed['value'], true));
+    }
+    if(isset($parsed['content-type']) && (is_array($parsed['content-type']) || !is_string($parsed['content-type'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'content-type field must be a single string', '"content-type" : ' . print_r($parsed['content-type'], true));
+    }
+    if(isset($parsed['text']) && (is_array($parsed['text']) || !is_string($parsed['text'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'text field must be a single string', '"text" : ' . print_r($parsed['text'], true));
+    }
+    if(isset($parsed['html']) && (is_array($parsed['html']) || !is_string($parsed['html'] ))){
+        $results[] = new ResultMessage(P_ERROR, 'html field must be a single string', '"html" : ' . print_r($parsed['html'], true));
+    }
+    
+    return $results;
 }
 
