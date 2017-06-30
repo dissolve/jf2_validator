@@ -13,6 +13,7 @@
 <?php 
 $input_data = filter_input(INPUT_POST, 'data' ); // removing actual filter from this for now
 $fix_quotes = isset($_POST['fix_quotes']);
+$jf2feed = isset($_POST['jf2feed']);
 ?>
     <section class="content">
         <form method="POST">
@@ -20,6 +21,7 @@ $fix_quotes = isset($_POST['fix_quotes']);
           <textarea name="data" placeholder="jf2 data here"><?php echo htmlspecialchars($input_data) ?></textarea>
           <br>
           <label for="fix_quotes">Auto Convert all single quotes to double quotes: </label><input id="fix_quotes" type="checkbox" name="fix_quotes" value="true"  <?php echo ($fix_quotes ? 'checked="checked"' : '') ?>/><br>
+          <label for="jf2feed">Validate with JF2 Feed Profile: </label><input id="jf2feed" type="checkbox" name="jf2feed" value="true"  <?php echo ($jf2feed ? 'checked="checked"' : '') ?>/><br>
           <input class="button" type="submit" name="submit" value="Validate"/>
 
         </form>
@@ -30,7 +32,11 @@ $fix_quotes = isset($_POST['fix_quotes']);
 
         require_once __DIR__ . '/validator.php';
 
-        $validator = new JF2Validator();
+        if($jf2feed){
+            $validator = new JF2FeedValidator();
+        } else {
+            $validator = new JF2Validator();
+        }
         $results = $validator->validate($input_data, $fix_quotes);
 
         $success = true;
