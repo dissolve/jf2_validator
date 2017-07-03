@@ -8,7 +8,7 @@
 
     <div class="single-column">
         <h1>JF2 Validator</h1>
-        <h2>WARNING: This validator is in active development, results may not be accurate.</h2>
+        <h2>This validator is only recently developed, there may well be bugs.  Please report any issues <a href="https://github.com/dissolve/jf2_validator/issues">Here</a>.</h2>
 
 <?php 
 $input_data = filter_input(INPUT_POST, 'data' ); // removing actual filter from this for now
