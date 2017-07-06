@@ -91,7 +91,6 @@ class JF2Validator
             $results[] = new ResultMessage(P_ERROR, 'value field must be a single string', '"value" : ' . print_r($parsed['value'], true));
         }
 
-
         // top level ONLY
         if(isset($parsed['references']) && !$this->is_hash($parsed['references'])) {
             $results[] = new ResultMessage(P_ERROR, 'references must be serialized as a hash', '"references" : ' . print_r($parsed['references'], true));
@@ -99,7 +98,6 @@ class JF2Validator
         if(isset($parsed['@context']) && (is_array($parsed['@context']) || !is_string($parsed['@context'] ))){
             $results[] = new ResultMessage(P_ERROR, '@context field must be a single string', '"@context" : ' . print_r($parsed['@context'], true));
         }
-
 
         // these doesn't make sense on top level items
         if(isset($parsed['content-type'])){
@@ -121,7 +119,6 @@ class JF2Validator
             $results[] = new ResultMessage(P_ERROR, 'html field must be a single string', '"html" : ' . print_r($parsed['html'], true));
         }
 
-
         $results = array_merge($results, $this->descend_and_recurse($parsed));
 
         return $results;
@@ -141,6 +138,9 @@ class JF2Validator
             }
 
         } elseif(is_array($parsed)){
+            if(count($parsed) == 1){
+                $results[] = new ResultMessage(P_WARN, 'Arrays of a single item should be just a single item', print_r($parsed, true));
+            }
             foreach($parsed as $val){
                 if($this->is_hash($val)){
                     $results = array_merge($results, $this->recursive_validate($val));

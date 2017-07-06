@@ -76,3 +76,17 @@ section.error{background-color:#fcc;}
 section.error:before{content:'Error: '; font-weight:bold;}
 section.success{background-color:#cfc;}
 
+.result .errorline{
+    display:none;
+    font-size:14px;
+}
+
+.result .expander-label{
+    float:right;
+}
+.result .expander-check{
+    display:none
+}
+.result .expander-check:checked ~ .errorline{
+    display:block;
+}

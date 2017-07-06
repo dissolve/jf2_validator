@@ -40,7 +40,9 @@ $jf2feed = isset($_POST['jf2feed']);
         $results = $validator->validate($input_data, $fix_quotes);
 
         $success = true;
+        $count = 0;
         foreach($results as $result){
+            $count += 1;
             $type = 'warn';
             if($result->type == P_ERROR){
                 $success = false;
@@ -48,6 +50,13 @@ $jf2feed = isset($_POST['jf2feed']);
             }
             echo '<section class="content result '.$type.'">';
             echo $result->message ;
+            if(!empty($result->line)){
+                echo '<label for="error-'.$count.'" class="expander-label">...</label>
+                    <input id="error-'.$count.'" type="checkbox" class="expander-check" />
+                    <pre class="errorline">';
+                echo htmlentities($result->line) ;
+                echo '</pre>';
+            }
             echo '</section>';
         }
     }
